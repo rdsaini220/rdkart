@@ -1,0 +1,30 @@
+{% include 'base.html' %}
+  {% block body %}
+    <section class="container-fluid">
+        <div class="row row-cols-1 row-cols-sm-3 gy-5">   
+            <div class="card p-5 col mx-auto">
+                <h3 class="text-center pb-4">Login</h3>
+                <div>
+                    {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{error}}
+                        </div>
+                    {% endif %}
+                    <form action="{% url 'login' %}" method='POST'>
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address</label>
+                            <input type="email" class="form-control form-control-sm" value="{{value.email}}" id="email" name="email" placeholder="Enter Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control form-control-sm" id="password" name="password" placeholder="Enter Password">
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-success col-lg-4">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+  {% endblock body %}
+
